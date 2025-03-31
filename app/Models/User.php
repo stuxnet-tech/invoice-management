@@ -21,6 +21,11 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'company_name',
+        'company_address',
+        'gst_number',
+        'is_admin',
+        'is_archived'
     ];
 
     /**
@@ -43,6 +48,28 @@ class User extends Authenticatable
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
+            'is_archived' => 'boolean'
         ];
+    }
+
+    public function vendors()
+    {
+        return $this->hasMany(Vendor::class);
+    }
+
+    public function products()
+    {
+        return $this->hasMany(Product::class);
+    }
+
+    public function invoices()
+    {
+        return $this->hasMany(Invoice::class);
+    }
+
+    public function isAdmin()
+    {
+        return $this->is_admin;
     }
 }

@@ -9,7 +9,8 @@ class VendorController extends Controller
 {
     public function index()
     {
-        return view('vendors.index', ['vendors' => Vendor::all()]);
+        $vendors = Vendor::latest()->paginate(10);
+        return view('vendors.index', compact('vendors'));
     }
 
     public function create()
@@ -30,6 +31,12 @@ class VendorController extends Controller
         Vendor::create($request->all());
 
         return redirect()->route('vendors.index')->with('success', 'Vendor added.');
+    }
+
+    public function destroy(Vendor $vendor)
+    {
+        $vendor->delete();
+        return redirect()->route('vendors.index')->with('success', 'Vendor deleted successfully.');
     }
 }
 

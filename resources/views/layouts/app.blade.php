@@ -15,6 +15,18 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
+    <nav class="bg-blue-600 p-4 text-white">
+        <div class="container mx-auto flex justify-between">
+            <a href="{{ route('dashboard') }}" class="text-lg font-bold">Dashboard</a>
+            <div class="flex gap-4">
+                <a href="{{ route('vendors.index') }}">Vendors</a>
+                <a href="{{ route('products.index') }}">Products</a>
+                <a href="{{ route('invoices.index') }}">Invoices</a>
+                <a href="{{ route('users.index') }}">Users</a>
+                <a href="{{ route('logout') }}" class="text-red-300">Logout</a>
+            </div>
+        </div>
+    </nav>
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
